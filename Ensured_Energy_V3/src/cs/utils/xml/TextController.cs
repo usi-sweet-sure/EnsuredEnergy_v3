@@ -62,9 +62,7 @@ public partial class TextController : XMLController {
 			Lang = C._GetLanguage();
 			
 			// Update the loaded xml
-            //!!! the next line crashes the program when called in _Ready and
-            //!!! I can't find why.
-            //!!! test it later when language change is implemented
+      //!!! System.IO.Path crashes the program and I can't find why.
 			ParseXML(ref LoadedXML, System.IO.Path.Combine("text/", Lang.ToString() + "/" + LoadedFileName));
 		}
 
