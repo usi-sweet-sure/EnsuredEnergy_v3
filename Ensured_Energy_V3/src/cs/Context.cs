@@ -164,7 +164,7 @@ public partial class Context : Node {
 		// Signal that the context has been updated
         // !!! SignalName is not available in Godot 3. This compile but should be tested at runtime
 		//EmitSignal(SignalName.UpdateContext);
-        EmitSignal("UpdateContextEventHandler");
+        EmitSignal(nameof(UpdateContextEventHandler));
 	}
 
 	// Wrapper for _UdpateModelFromServer that simply unfolds the model struct before calling the update method
@@ -191,7 +191,7 @@ public partial class Context : Node {
 		// Signal that the predictions need to be updated
         // !!! SignalName is not available in Godot 3. This compile but should be tested at runtime
 		//EmitSignal(SignalName.UpdatePrediction);
-        EmitSignal("UpdatePredictionEventHandler");
+        EmitSignal(nameof(UpdatePredictionEventHandler));
 	}
 
 	// Updates the demand in the model manually
@@ -211,7 +211,7 @@ public partial class Context : Node {
 		// Signal that the context has been updated 
 	    // !!! SignalName is not available in Godot 3. This compile but should be tested at runtime
 		//EmitSignal(SignalName.UpdateContext);
-        EmitSignal("UpdateContextEventHandler");
+        EmitSignal(nameof(UpdateContextEventHandler));
 	}
 
 	// Updates the current ID (should only be done once per game)
@@ -247,8 +247,9 @@ public partial class Context : Node {
 
             // !!! SignalName is not available in Godot 3. This compile but should be tested at runtime
 			//EmitSignal(SignalName.UpdateLanguage);
-            EmitSignal("UpdateLanguageEventHandler");
+            EmitSignal(nameof(UpdateLanguageEventHandler));
 		}
+        
 		// Don't do anything if the languages are the same
 	}
 
@@ -266,7 +267,7 @@ public partial class Context : Node {
 
         // !!! SignalName is not available in Godot 3. This compile but should be tested at runtime
 		//EmitSignal(SignalName.UpdateLanguage);
-        EmitSignal("UpdateLanguageEventHandler");
+        EmitSignal(nameof(UpdateLanguageEventHandler));
 	}
 
 	// Get the number of survived shocks
