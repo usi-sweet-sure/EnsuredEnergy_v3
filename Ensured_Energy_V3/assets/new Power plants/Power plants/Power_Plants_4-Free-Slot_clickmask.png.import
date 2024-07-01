@@ -1,0 +1,15 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+path="res://.import/Power_Plants_4-Free-Slot_clickmask.png-75edc19cd59b69008785422e05b55fa6.res"
+
+[deps]
+
+source_file="res://assets/new Power plants/Power plants/Power_Plants_4-Free-Slot_clickmask.png"
+dest_files=[ "res://.import/Power_Plants_4-Free-Slot_clickmask.png-75edc19cd59b69008785422e05b55fa6.res" ]
+
+[params]
+
+create_from=0
+threshold=0.5
