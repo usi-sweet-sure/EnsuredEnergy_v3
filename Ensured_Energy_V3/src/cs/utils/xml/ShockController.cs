@@ -48,8 +48,8 @@ public partial class ShockController : XMLController {
 		C = GetNode<Context>("/root/Context");
 
 		// Connect to the context's update language signal
-        // !!! The next line has to be tested when language change is implemented
-        C.Connect(nameof(Context.UpdateLanguageEventHandler), this, nameof(_UpdateLanguage));
+		// !!! Reconnect when implementing ShockController
+		//C.Connect(nameof(Context.UpdateLanguageEventHandler), this, nameof(_UpdateLanguage));
 	}
 
 	// ==================== Public API ====================
@@ -61,7 +61,7 @@ public partial class ShockController : XMLController {
 			Lang = C._GetLanguage();
 			
 			// Update the loaded xml
-            // !!! Make sure System.IO.Path doesn't bug
+      // !!! Make sure System.IO.Path doesn't bug
 			ParseXML(ref LoadedXML, System.IO.Path.Combine("text/", Lang.ToString() + "/" + LoadedFileName));
 		}
 		// Don't do anything if the languages are the same

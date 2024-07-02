@@ -51,8 +51,8 @@ public partial class PolicyController : XMLController {
 		C = GetNode<Context>("/root/Context");
 
 		// Connect to the context's update language signal
-		// !!! The next line has to be tested when language change is implemented
-        C.Connect(nameof(Context.UpdateLanguageEventHandler), this, nameof(_UpdateLanguage));
+		// !!! Reconnect when implementing PolicyController
+    //C.Connect(nameof(Context.UpdateLanguageEventHandler), this, nameof(_UpdateLanguage));
 	}
 
 	// ==================== Public API ====================

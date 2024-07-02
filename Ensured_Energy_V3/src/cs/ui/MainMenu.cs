@@ -57,26 +57,85 @@ public partial class MainMenu : CanvasLayer {
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
-        Lang = GetNode<TextureButton>("Lang");
-        Lang.Connect("pressed", this, nameof(_OnLangPressed));
+		// Fetch Nodes
+		C = GetNode<Context>("/root/Context");
+		GL = GetOwner<GameLoop>();
+		TC = GetNode<TextController>("/root/TextController");
+		Play = GetNode<TextureButton>("Play");
+		Lang = GetNode<TextureButton>("Lang");
+		Mode = GetNode<TextureButton>("Offline");
+		Title = GetNode<Label>("Title");
+		PlayL = GetNode<Label>("Play/PlayL");
+		LangL = GetNode<Label>("Lang/LangL");
+		OfflineL = GetNode<Label>("Offline/OfflineL");
+		Drag = GetNode<Label>("BlueprintNormal/Drag");
+		Scroll = GetNode<Label>("BlueprintNormal/Scroll");
+		
+		// Connect button callbacks
+		Play.Connect("pressed", this, nameof(_OnPlayPressed));
+		Play.Connect("pressed", GL, nameof(GL._OnPlayPressed));
+		Lang.Connect("pressed", this, nameof(_OnLangPressed));
+		Mode.Connect("pressed", this, nameof(_OnModePressed));
+
 		// Initialize the various labels
+		SetLabels();
+
+		//////////////////////////////////////////
+		//////////For Demo, remove later//////////
+		Mode.Disabled = true;
+		bool off = C._ToggleOffline();
+		if(!off) C._ToggleOffline();
+		SetLabels();
+		//////////////////////////////////////////
+		//////////////////////////////////////////
 	}
 
-    // ==================== Public API ====================
-    // Resets the main menu to its initial state
-    public void _Reset() {
-
+	// ==================== Public API ====================
+	// Resets the main menu to its initial state
+	public void _Reset() {
+		// The only thing that is needed to reset the main menu is to
+		// reset the labels so that they have the correct language
+		SetLabels();
 	}
 	
 	// ==================== Interaction Callbacks ====================
+
+	// Starts the game 
+	private void _OnPlayPressed() {
+		// Our main menu is simply an overlay
+		Hide();
+	}
+	
 	// Updates the language
 	private void _OnLangPressed() {
-        GD.Print( System.IO.Path.Combine("text/", "en" + "/" ));
 		// Update the language 
-		//!!! C._NextLanguage();
+		C._NextLanguage();
 
 		// Update the labels
-		//!!!! SetLabels();
+		SetLabels();
 	}
 
+	// Toggles the offline/online modes
+	private void _OnModePressed() {
+		// Update the offline mode
+		C._ToggleOffline();
+
+		// Update the labels
+		SetLabels();
+	}
+
+	// ==================== Internal Helpers ====================
+
+	// Sets all of the text fields based on the current state of the text controller
+	private void SetLabels() {
+		Title.Text = TC._GetText(MENU_FILE, MENU_GROUP, TITLE_ID);
+		PlayL.Text = TC._GetText(MENU_FILE, MENU_GROUP, PLAY_ID);
+		LangL.Text = C._GetLanguageName();
+		Drag.Text = TC._GetText(MENU_FILE, MENU_GROUP, "hold_drag");
+		Scroll.Text = TC._GetText(MENU_FILE, MENU_GROUP, "scroll_zoom");
+		OfflineL.Text = TC._GetText(MENU_FILE, MENU_GROUP, MODE_ID) + ": " +
+			(C._GetOffline() ? TC._GetText(MENU_FILE, MENU_GROUP, OFFLINE_ID) :
+							   TC._GetText(MENU_FILE, MENU_GROUP, ONLINE_ID)
+			);
+	}
 }

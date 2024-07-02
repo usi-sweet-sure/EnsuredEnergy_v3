@@ -16,7 +16,6 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 using Godot;
-using System.IO;
 using System.Xml.Linq;
 using System.Linq;
 using System.Collections.Generic;
@@ -48,24 +47,21 @@ public partial class TextController : XMLController {
 		C = GetNode<Context>("/root/Context");
 
 		// Connect to the context's update language signal
-        // !!! The next line has to be tested when language change is implemented
-        C.Connect(nameof(Context.UpdateLanguageEventHandler), this, nameof(_UpdateLanguage));
+		C.Connect(nameof(Context.UpdateLanguageEventHandler), this, nameof(_UpdateLanguage));
 	}
 
 	// ==================== Public API ====================
 
-	// Updates the language the textcontroller is set to  
+	  // Updates the language the textcontroller is set to  
 	public void _UpdateLanguage() {
-
 		// Check that the given language is new
 		if(C._GetLanguage() != Lang) {
 			Lang = C._GetLanguage();
 			
 			// Update the loaded xml
-      //!!! System.IO.Path crashes the program and I can't find why.
-			ParseXML(ref LoadedXML, System.IO.Path.Combine("text/", Lang.ToString() + "/" + LoadedFileName));
+			ParseXML(ref LoadedXML, "text/" + Lang.ToString() + "/" + LoadedFileName);
 		}
-
+		
 		// Don't do anything if the languages are the same
 		EmitSignal(nameof(UpdateUIEventHandler));
 	}
@@ -109,7 +105,7 @@ public partial class TextController : XMLController {
 		// Check if the file is loaded in or not
 		if(LoadedFileName != filename || LoadedLanguage != Lang) {
 			// If not parse the file
-			ParseXML(ref LoadedXML, System.IO.Path.Combine("text/", Lang.ToString() + "/" + filename));
+			ParseXML(ref LoadedXML, "text/" + Lang.ToString() + "/" + filename);
 
 			// Update the current loaded file data
 			LoadedFileName = filename;

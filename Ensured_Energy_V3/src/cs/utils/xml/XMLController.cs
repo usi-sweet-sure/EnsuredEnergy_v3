@@ -43,9 +43,9 @@ public abstract partial class XMLController : Node {
 		XDocument xml;
 		string path = DB_PATH + filename;
 		try {
-            // !!! test the next two following lines when System.IO.Path doesn't bug anymore
-            using var file = new Godot.File();
-            file.Open(path, Godot.File.ModeFlags.Read);
+			using var file = new Godot.File();
+			file.Open(path, Godot.File.ModeFlags.Read);
+
 			loadedXML = file.GetAsText();
 			xml = XDocument.Parse(loadedXML);
 		} catch(Exception) {

@@ -245,9 +245,9 @@ public partial class Context : Node {
 
 			// Signal to controllers that the language has changed
 
-            // !!! SignalName is not available in Godot 3. This compile but should be tested at runtime
+      // !!! SignalName is not available in Godot 3. This compile but should be tested at runtime
 			//EmitSignal(SignalName.UpdateLanguage);
-            EmitSignal(nameof(UpdateLanguageEventHandler));
+      EmitSignal(nameof(UpdateLanguageEventHandler));
 		}
         
 		// Don't do anything if the languages are the same
