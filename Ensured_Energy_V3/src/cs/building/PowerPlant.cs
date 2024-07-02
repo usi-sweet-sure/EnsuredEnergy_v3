@@ -36,7 +36,9 @@ public partial class PowerPlant : Node2D {
 	public float BiodiversityImpact = 0.1f;
 	public bool IsAlive = true;
 	private (float, float) EnergyAvailability = (1.0f, 1.0f); // (Winter, Summer)
+	private float Pollution = 10f;
 
+	public float _GetPollution() => Pollution;
 
 	[Export] 
 	// The type of the power plant, this is for internal use, other fields have to be 
