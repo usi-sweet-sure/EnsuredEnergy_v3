@@ -33,12 +33,17 @@ public partial class PowerPlant : Node2D {
 	public int BuildTime = 0;
 	public int EndTurn = 10;
 	public float LandUse = 0.1f;
+	private int ProductionCost = 0;
+
 	public float BiodiversityImpact = 0.1f;
 	public bool IsAlive = true;
 	private (float, float) EnergyAvailability = (1.0f, 1.0f); // (Winter, Summer)
 	private float Pollution = 10f;
 
 	public float _GetPollution() => Pollution;
+	public delegate void UpdatePlantEventHandler();
+	public int _GetProductionCost() => ProductionCost;
+
 
 	[Export] 
 	// The type of the power plant, this is for internal use, other fields have to be 
@@ -50,13 +55,21 @@ public partial class PowerPlant : Node2D {
 	public int _GetCapacity() => EnergyCapacity;
 	public bool _GetLiveness() => IsAlive;
 	public (float, float) _GetAvailability() => EnergyAvailability;
+	private bool EnergySignalConnected = false;
+
 
 	public void _UdpatePowerPlantFields(
-	bool updateInit=false, // Whether or not to update the initial values as well
-	float pol=-1, // pollution amount
-	int PC=-1, // Production cost
-	int EC=-1, // Energy capacity
-	float AV_W=-1, // Winter availability
-	float AV_S=-1 // Summer availability
+		bool updateInit=false, // Whether or not to update the initial values as well
+		float pol=-1, // pollution amount
+		int PC=-1, // Production cost
+		int EC=-1, // Energy capacity
+		float AV_W=-1, // Winter availability
+		float AV_S=-1 // Summer availability
 	) {}
+
+	public void _NextTurn() {}
+	public bool _GetEnergyConnectFlag() => EnergySignalConnected;
+	public void _SetEnergyConnectFlag() {
+		EnergySignalConnected = true;
+	}
 }

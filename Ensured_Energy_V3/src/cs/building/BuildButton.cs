@@ -27,4 +27,9 @@ public partial class BuildButton : TextureButton {
 	 * !!! This code is not being reworked yet. 
 	 * Lines are just readded progressively as needed in other files.
 	 */
+	public delegate void BuildDoneEventHandler();
+
+	public void _NextTurn() {
+
+	}	
 }
