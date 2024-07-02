@@ -16,14 +16,10 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 using Godot;
-using System;
-using System.IO;
-using System.Xml;
 using System.Xml.Linq;
 using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 
 // XML Controller specifically tailored for reading the policy config files
 // These are particular, as they contain both translatable text and config data.
@@ -51,8 +47,7 @@ public partial class PolicyController : XMLController {
 		C = GetNode<Context>("/root/Context");
 
 		// Connect to the context's update language signal
-		// !!! Reconnect when implementing PolicyController
-    //C.Connect(nameof(Context.UpdateLanguageEventHandler), this, nameof(_UpdateLanguage));
+    C.Connect(nameof(Context.UpdateLanguageEventHandler), this, nameof(_UpdateLanguage));
 	}
 
 	// ==================== Public API ====================
@@ -66,8 +61,7 @@ public partial class PolicyController : XMLController {
 			CheckXML();
 			
 			// Update the loaded xml
-            // !!! Make sure System.IO.Path doesn't bug
-			ParseXML(ref LoadedXML, System.IO.Path.Combine("text/", Lang.ToString() + "/" + LoadedFileName));
+			ParseXML(ref LoadedXML, "text/" + Lang.ToString() + "/" + LoadedFileName);
 		}
 		// Don't do anything if the languages are the same
 	}
@@ -180,8 +174,7 @@ public partial class PolicyController : XMLController {
 	private void CheckXML() {
 		// Check if the file is loaded in or not
 		if(LoadedFileName != POLICY_FILENAME || LoadedLanguage != Lang) {
-            // !!! Make sure System.IO.Path doesn't bug
-			ParseXML(ref LoadedXML, System.IO.Path.Combine("text/", Lang.ToString() + "/" + POLICY_FILENAME));
+			ParseXML(ref LoadedXML, "text/" + Lang.ToString() + "/" + POLICY_FILENAME);
 			LoadedFileName = POLICY_FILENAME;
 			LoadedLanguage = Lang;
 		}
