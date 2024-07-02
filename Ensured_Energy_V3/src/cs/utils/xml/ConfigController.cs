@@ -69,8 +69,7 @@ public partial class ConfigController : XMLController {
 	private Multiplier ReadPPMultiplier(string filename, string id) {
 		// Start by checking if the file is loaded in or not
 		if(LoadedFileName != filename) {
-      // !!! Make sure System.IO.Path doesn't bug
-			ParseXML(ref LoadedXML, System.IO.Path.Combine("configs/", filename));
+			ParseXML(ref LoadedXML, "configs/"+ filename);
 			LoadedFileName = filename;
 		}
 
@@ -80,7 +79,7 @@ public partial class ConfigController : XMLController {
 			where g.Attribute("id").Value == id // Find the correct group
 			select g;
 		
-		// Retrive parameter group
+		// Retrieve parameter group
 		IEnumerable<XElement> multparams = GetParamGroup(query, "multiplier");
 
 		if(multparams == null) throw new Exception("HELP");
@@ -97,12 +96,11 @@ public partial class ConfigController : XMLController {
 		);
 	}
 
-	// Reads out a power plant configuation file
+	// Reads out a power plant configuration file
 	private PowerPlantConfigData ReadPPConfig(string filename, string id) {
 		// Start by checking if the file is loaded in or not
 		if(LoadedFileName != filename) {
-      // !!! Make sure System.IO.Path doesn't bug
-			ParseXML(ref LoadedXML, System.IO.Path.Combine("configs/", filename));
+			ParseXML(ref LoadedXML, "configs/" + filename);
 			LoadedFileName = filename;
 		}
 
@@ -112,7 +110,7 @@ public partial class ConfigController : XMLController {
 			where g.Attribute("id").Value == id // Find the correct group
 			select g;
 		
-		// Retrive parameter groups
+		// Retrieve parameter groups
 		IEnumerable<XElement> metaParams = GetParamGroup(query, "meta");
 		IEnumerable<XElement> energyParams = GetParamGroup(query, "energy");
 		IEnumerable<XElement> environmentParams = GetParamGroup(query, "environment");
