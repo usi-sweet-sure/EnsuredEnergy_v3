@@ -29,6 +29,13 @@ public partial class PowerPlant : Node2D {
 
 	private int EnergyCapacity = 100;
 
+	public int BuildCost = 0;
+	public int BuildTime = 0;
+	public int EndTurn = 10;
+	public float LandUse = 0.1f;
+	public float BiodiversityImpact = 0.1f;
+
+
 	[Export] 
 	// The type of the power plant, this is for internal use, other fields have to be 
 	// updated to match the type of the building
@@ -37,4 +44,15 @@ public partial class PowerPlant : Node2D {
 
 	// Getter for the powerplant's current capacity
 	public int _GetCapacity() => EnergyCapacity;
+
+		public void _UdpatePowerPlantFields(
+		bool updateInit=false, // Whether or not to update the initial values as well
+		float pol=-1, // pollution amount
+		int PC=-1, // Production cost
+		int EC=-1, // Energy capacity
+		float AV_W=-1, // Winter availability
+		float AV_S=-1 // Summer availability
+	) {
+	
+	}
 }

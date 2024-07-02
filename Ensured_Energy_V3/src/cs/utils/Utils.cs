@@ -533,29 +533,25 @@ public readonly struct PowerPlantConfigData : ConfigData {
 
 	// Copies the datatype fields into a PowerPlant Object
 	public void _CopyTo(ref PowerPlant PP) {
-        /*
-         * !!! Implementation of the following code has been temporarily removed from PowerPlant.cs
+		// Sanity check 
+		if(PP == null) {
+				throw new ArgumentException("Invalid PowerPlant was given!");
+		}
 
-            // Sanity check 
-            if(PP == null) {
-                throw new ArgumentException("Invalid PowerPlant was given!");
-            }
+		// Copy in the public fields
+		PP.BuildCost = BuildCost;
+		PP.BuildTime = BuildTime;
+		PP.EndTurn = EndTurn;
+		PP.LandUse = LandUse;
+		PP.BiodiversityImpact = Biodiversity;
 
-            // Copy in the public fields
-            PP.BuildCost = BuildCost;
-            PP.BuildTime = BuildTime;
-            PP.EndTurn = EndTurn;
-            PP.LandUse = LandUse;
-            PP.BiodiversityImpact = Biodiversity;
-
-            // Copy in the private fields
-            PP._UdpatePowerPlantFields(
-                true, 
-                Pollution,
-                ProductionCost,
-                Capacity
-            );
-        */
+		// Copy in the private fields
+		PP._UdpatePowerPlantFields(
+				true, 
+				Pollution,
+				ProductionCost,
+				Capacity
+		);  
 	}
 }
 
