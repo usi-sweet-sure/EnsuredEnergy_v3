@@ -21,8 +21,18 @@ using System.Diagnostics;
 
 // General controller for the UI
 public partial class UI : CanvasLayer {
+	private ImportSlider Imports;
 	/*
 	 * !!! This code is not being reworked yet. 
 	 * Lines are just readded progressively as needed in other files.
 	 */
+	public enum InfoType { W_ENGERGY, S_ENGERGY, SUPPORT, ENVIRONMENT, POLLUTION, MONEY };
+
+	public bool _GetGreenImportState() => Imports._GetGreenImports();
+
+
+	public float _GetImportSliderPercentage() => (float)Imports._GetImportValue();
+
+	public void _UpdateData(InfoType t, params int[] d) {}
+
 }
