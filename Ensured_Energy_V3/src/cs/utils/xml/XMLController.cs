@@ -17,11 +17,7 @@
 */
 using Godot;
 using System;
-using System.IO;
-using System.Xml;
 using System.Xml.Linq;
-using System.Linq;
-using System.Collections.Generic;
 
 // Base class for all controllers that work with xml objects
 public abstract partial class XMLController : Node {

@@ -16,9 +16,6 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 using Godot;
-using System;
-using System.IO;
-using System.Xml;
 using System.Xml.Linq;
 using System.Linq;
 using System.Collections.Generic;
@@ -48,8 +45,7 @@ public partial class ShockController : XMLController {
 		C = GetNode<Context>("/root/Context");
 
 		// Connect to the context's update language signal
-		// !!! Reconnect when implementing ShockController
-		//C.Connect(nameof(Context.UpdateLanguageEventHandler), this, nameof(_UpdateLanguage));
+		C.Connect(nameof(Context.UpdateLanguageEventHandler), this, nameof(_UpdateLanguage));
 	}
 
 	// ==================== Public API ====================
@@ -61,8 +57,7 @@ public partial class ShockController : XMLController {
 			Lang = C._GetLanguage();
 			
 			// Update the loaded xml
-      // !!! Make sure System.IO.Path doesn't bug
-			ParseXML(ref LoadedXML, System.IO.Path.Combine("text/", Lang.ToString() + "/" + LoadedFileName));
+			ParseXML(ref LoadedXML, "text/" + Lang.ToString() + "/" + LoadedFileName);
 		}
 		// Don't do anything if the languages are the same
 	}
@@ -154,7 +149,7 @@ public partial class ShockController : XMLController {
 
 	// ==================== Internal Helpers ====================
 
-	// Retrives a first-level field's content given an id and the field string
+	// Retrieves a first-level field's content given an id and the field string
 	private string GetField(string id, string field) {
 		// Start by checking if the file is loaded in or not
 		CheckXML();
@@ -171,8 +166,7 @@ public partial class ShockController : XMLController {
 	private void CheckXML() {
 		// Check if the file is loaded in or not
 		if(LoadedFileName != SHOCK_FILENAME || LoadedLanguage != Lang) {
-            // !!! Make sure System.IO.Path doesn't bug
-			ParseXML(ref LoadedXML, System.IO.Path.Combine("text/", Lang.ToString() + "/" + SHOCK_FILENAME));
+			ParseXML(ref LoadedXML, "text/" + Lang.ToString() + "/" + SHOCK_FILENAME);
 			LoadedFileName = SHOCK_FILENAME;
 			LoadedLanguage = Lang;
 		}

@@ -15,10 +15,7 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-using Godot;
 using System;
-using System.IO;
-using System.Xml;
 using System.Xml.Linq;
 using System.Linq;
 using System.Collections.Generic;
