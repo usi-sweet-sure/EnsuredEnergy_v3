@@ -162,9 +162,7 @@ public partial class Context : Node {
 		}
 
 		// Signal that the context has been updated
-        // !!! SignalName is not available in Godot 3. This compile but should be tested at runtime
-		//EmitSignal(SignalName.UpdateContext);
-        EmitSignal(nameof(UpdateContextEventHandler));
+    EmitSignal(nameof(UpdateContextEventHandler));
 	}
 
 	// Wrapper for _UdpateModelFromServer that simply unfolds the model struct before calling the update method
@@ -189,9 +187,7 @@ public partial class Context : Node {
 		MSummer._ModifyField(ModelCol.Type.CAP, pp.PlantType, new_cap_w);
 
 		// Signal that the predictions need to be updated
-        // !!! SignalName is not available in Godot 3. This compile but should be tested at runtime
-		//EmitSignal(SignalName.UpdatePrediction);
-        EmitSignal(nameof(UpdatePredictionEventHandler));
+    EmitSignal(nameof(UpdatePredictionEventHandler));
 	}
 
 	// Updates the demand in the model manually
@@ -209,9 +205,7 @@ public partial class Context : Node {
 		}
 
 		// Signal that the context has been updated 
-	    // !!! SignalName is not available in Godot 3. This compile but should be tested at runtime
-		//EmitSignal(SignalName.UpdateContext);
-        EmitSignal(nameof(UpdateContextEventHandler));
+    EmitSignal(nameof(UpdateContextEventHandler));
 	}
 
 	// Updates the current ID (should only be done once per game)
@@ -244,9 +238,6 @@ public partial class Context : Node {
 			Lang = l;
 
 			// Signal to controllers that the language has changed
-
-      // !!! SignalName is not available in Godot 3. This compile but should be tested at runtime
-			//EmitSignal(SignalName.UpdateLanguage);
       EmitSignal(nameof(UpdateLanguageEventHandler));
 		}
         
@@ -265,8 +256,6 @@ public partial class Context : Node {
 
 		// Signal to controllers that the language has changed
 
-    // !!! SignalName is not available in Godot 3. This compile but should be tested at runtime
-		//EmitSignal(SignalName.UpdateLanguage);
     EmitSignal(nameof(UpdateLanguageEventHandler));
 	}
 
