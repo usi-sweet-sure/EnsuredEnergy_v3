@@ -40,8 +40,7 @@ public partial class GameLoop : Node2D {
 	// Retrieves the current resource estimates from the resource manager
 	public (Energy, Environment, Support) _GetResources() => RM._GetResources();
 
-	public void _OnPlayPressed() {
-	
-	}
+	public void _OnPlayPressed() {}
 
+	public void _ApplyEffect(Effect e) {}
 }
