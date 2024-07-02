@@ -34,6 +34,8 @@ public partial class PowerPlant : Node2D {
 	public int EndTurn = 10;
 	public float LandUse = 0.1f;
 	public float BiodiversityImpact = 0.1f;
+	public bool IsAlive = true;
+	private (float, float) EnergyAvailability = (1.0f, 1.0f); // (Winter, Summer)
 
 
 	[Export] 
@@ -44,15 +46,15 @@ public partial class PowerPlant : Node2D {
 
 	// Getter for the powerplant's current capacity
 	public int _GetCapacity() => EnergyCapacity;
+	public bool _GetLiveness() => IsAlive;
+	public (float, float) _GetAvailability() => EnergyAvailability;
 
-		public void _UdpatePowerPlantFields(
-		bool updateInit=false, // Whether or not to update the initial values as well
-		float pol=-1, // pollution amount
-		int PC=-1, // Production cost
-		int EC=-1, // Energy capacity
-		float AV_W=-1, // Winter availability
-		float AV_S=-1 // Summer availability
-	) {
-	
-	}
+	public void _UdpatePowerPlantFields(
+	bool updateInit=false, // Whether or not to update the initial values as well
+	float pol=-1, // pollution amount
+	int PC=-1, // Production cost
+	int EC=-1, // Energy capacity
+	float AV_W=-1, // Winter availability
+	float AV_S=-1 // Summer availability
+	) {}
 }
