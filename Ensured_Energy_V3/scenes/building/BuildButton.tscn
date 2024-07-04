@@ -1,0 +1,231 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://scenes/building/PowerPlant.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0011_Gas.png" type="Texture" id=2]
+[ext_resource path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0025_Solar-1.png" type="Texture" id=3]
+[ext_resource path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0018_Hydrolic-Reservoir.png" type="Texture" id=4]
+[ext_resource path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0017_Tree.png" type="Texture" id=5]
+[ext_resource path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0020_Wind-1.png" type="Texture" id=6]
+[ext_resource path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0015_Waste.png" type="Texture" id=7]
+[ext_resource path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0012_Biomass.png" type="Texture" id=8]
+[ext_resource path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0016_Hydrolic-River.png" type="Texture" id=9]
+[ext_resource path="res://assets/new Power plants/Power plants/Power_Plants_4-Construction-Trees.png" type="Texture" id=10]
+[ext_resource path="res://assets/new Power plants/Power plants/Power_Plants_4-Construction-Slot.png" type="Texture" id=11]
+[ext_resource path="res://assets/UI Elements/Envirornment-Bar-Metal.png" type="Texture" id=12]
+[ext_resource path="res://assets/UI Elements/Icon-Hammer.png" type="Texture" id=13]
+[ext_resource path="res://assets/UI Elements/Build_Menu_0002_Numbers-counter-1.png" type="Texture" id=14]
+[ext_resource path="res://assets/UI Elements/Build_Menu_0003_Numbers-hole.png" type="Texture" id=15]
+[ext_resource path="res://assets/UI Elements/Icon-Solar.png" type="Texture" id=16]
+[ext_resource path="res://assets/UI Elements/Icon-Wind.png" type="Texture" id=17]
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 11 )
+region = Rect2( 4, 194, 696, 450 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 12 )
+region = Rect2( 0, 6, 334, 150 )
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 10 )
+region = Rect2( 80, 920, 804, 466 )
+
+[node name="BuildButton" type="TextureButton" groups=["BB"]]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Hammer" type="Sprite" parent="."]
+position = Vector2( 335, 217 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 13 )
+
+[node name="Gas" parent="." instance=ExtResource( 1 )]
+visible = false
+HasAnimation = true
+
+[node name="Sprite" parent="Gas" index="1"]
+texture = ExtResource( 2 )
+
+[node name="Hydro" parent="." instance=ExtResource( 1 )]
+visible = false
+HasAnimation = true
+_PlantType = 0
+
+[node name="Sprite" parent="Hydro" index="1"]
+texture = ExtResource( 4 )
+
+[node name="Solar" parent="." instance=ExtResource( 1 )]
+visible = false
+HasAnimation = true
+_PlantType = 2
+
+[node name="Sprite" parent="Solar" index="1"]
+texture = ExtResource( 3 )
+
+[node name="Tree" parent="." instance=ExtResource( 1 )]
+visible = false
+HasAnimation = true
+_PlantType = 3
+
+[node name="Sprite" parent="Tree" index="1"]
+texture = ExtResource( 5 )
+
+[node name="Wind" parent="." instance=ExtResource( 1 )]
+_PlantType = 5
+
+[node name="Sprite" parent="Wind" index="1"]
+texture = ExtResource( 6 )
+
+[node name="BuildingInfo" type="ColorRect" parent="."]
+margin_left = 297.0
+margin_top = 297.0
+margin_right = 453.0
+margin_bottom = 374.0
+
+[node name="TurnsLeft" type="Label" parent="BuildingInfo"]
+margin_top = -9.5
+margin_right = 156.0
+margin_bottom = 86.5
+text = "1"
+align = 1
+valign = 1
+
+[node name="Building" type="Sprite" parent="BuildingInfo"]
+position = Vector2( -213, -265 )
+scale = Vector2( 0.8, 0.8 )
+texture = SubResource( 2 )
+
+[node name="Plate" type="Sprite" parent="BuildingInfo/Building"]
+position = Vector2( 346.25, -140 )
+scale = Vector2( 2, 2 )
+texture = SubResource( 3 )
+
+[node name="PlantName" type="Label" parent="BuildingInfo/Building/Plate"]
+margin_left = -161.0
+margin_top = -60.0
+margin_right = 160.0
+margin_bottom = -4.0
+text = "NAME"
+align = 1
+
+[node name="WinterE" type="Sprite" parent="BuildingInfo/Building/Plate"]
+position = Vector2( -69, 18 )
+texture = ExtResource( 15 )
+
+[node name="Sprite2" type="Sprite" parent="BuildingInfo/Building/Plate/WinterE"]
+position = Vector2( 9, 0 )
+texture = ExtResource( 14 )
+
+[node name="Sprite3" type="Sprite" parent="BuildingInfo/Building/Plate/WinterE"]
+position = Vector2( 29, 0 )
+texture = ExtResource( 14 )
+
+[node name="WinterE" type="Label" parent="BuildingInfo/Building/Plate/WinterE"]
+margin_left = -11.0
+margin_top = -17.0
+margin_right = 37.0
+margin_bottom = 25.0
+text = "10"
+align = 2
+
+[node name="SummerE" type="Sprite" parent="BuildingInfo/Building/Plate"]
+position = Vector2( 59, 18 )
+texture = ExtResource( 15 )
+
+[node name="Sprite2" type="Sprite" parent="BuildingInfo/Building/Plate/SummerE"]
+position = Vector2( 9, 0 )
+texture = ExtResource( 14 )
+
+[node name="Sprite3" type="Sprite" parent="BuildingInfo/Building/Plate/SummerE"]
+position = Vector2( 29, 0 )
+texture = ExtResource( 14 )
+
+[node name="SummerE" type="Label" parent="BuildingInfo/Building/Plate/SummerE"]
+margin_left = -11.0
+margin_top = -17.0
+margin_right = 37.0
+margin_bottom = 25.0
+text = "10"
+align = 2
+
+[node name="Summer" type="Sprite" parent="BuildingInfo/Building/Plate"]
+position = Vector2( 27, 18 )
+texture = ExtResource( 16 )
+
+[node name="Winter" type="Sprite" parent="BuildingInfo/Building/Plate"]
+position = Vector2( -101, 18 )
+texture = ExtResource( 17 )
+
+[node name="BuildingInfo" type="Button" parent="BuildingInfo/Building"]
+margin_left = 36.0
+margin_top = 40.0
+margin_right = 666.0
+margin_bottom = 390.0
+flat = true
+
+[node name="Planting" type="Sprite" parent="BuildingInfo"]
+visible = false
+position = Vector2( -242, -277 )
+scale = Vector2( 0.8, 0.8 )
+texture = SubResource( 1 )
+
+[node name="Waste" parent="." instance=ExtResource( 1 )]
+visible = false
+_PlantType = 6
+
+[node name="Sprite" parent="Waste" index="1"]
+texture = ExtResource( 7 )
+
+[node name="Biomass" parent="." instance=ExtResource( 1 )]
+visible = false
+_PlantType = 7
+
+[node name="Sprite" parent="Biomass" index="1"]
+texture = ExtResource( 8 )
+
+[node name="River" parent="." instance=ExtResource( 1 )]
+visible = false
+_PlantType = 8
+
+[node name="Sprite" parent="River" index="1"]
+texture = ExtResource( 9 )
+
+[node name="Pump" parent="." instance=ExtResource( 1 )]
+visible = false
+_PlantType = 9
+
+[node name="Sprite" parent="Pump" index="1"]
+texture = ExtResource( 4 )
+
+[node name="Cancel" type="Button" parent="."]
+margin_left = 521.0
+margin_top = -24.0
+margin_right = 577.0
+margin_bottom = 32.0
+text = "X"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Money" type="Label" parent="."]
+margin_left = 57.0
+margin_top = 68.0
+margin_right = 217.0
+margin_bottom = 157.0
+text = "-100$"
+align = 1
+valign = 1
+
+[node name="BuildingSound" type="AudioStreamPlayer2D" parent="."]
+
+[editable path="Gas"]
+[editable path="Hydro"]
+[editable path="Solar"]
+[editable path="Tree"]
+[editable path="Wind"]
+[editable path="Waste"]
+[editable path="Biomass"]
+[editable path="River"]
+[editable path="Pump"]

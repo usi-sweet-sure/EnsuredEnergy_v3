@@ -47,7 +47,11 @@ public partial class GameLoop : Node2D {
 
 	public void _ApplyEffect(Effect e) {}
 
-	public void _ApplyOverloads() {
+	public void _ApplyOverloads() {}
 
+	public void _ApplyOverload(ref PowerPlant PP) {}
+
+	public bool _RequestBuild(int cost) {
+		return false;
 	}
 }
