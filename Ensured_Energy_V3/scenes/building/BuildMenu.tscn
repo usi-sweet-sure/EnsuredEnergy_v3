@@ -1,0 +1,138 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/building/PowerPlant.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/cs/building/BuildMenu.cs" type="Script" id=2]
+
+[node name="BuildMenu" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="CloseButton" type="Button" parent="."]
+margin_right = 1921.0
+margin_bottom = 688.0
+flat = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Container" type="ColorRect" parent="."]
+margin_left = 400.0
+margin_top = 1100.0
+margin_right = 1920.0
+margin_bottom = 1452.0
+color = Color( 0.180392, 0.180392, 0.180392, 0 )
+
+[node name="Solar" parent="Container" instance=ExtResource( 1 )]
+position = Vector2( 194, 167 )
+scale = Vector2( 0.9, 0.9 )
+_PlantType = 2
+
+[node name="SolarButton" type="Button" parent="Container/Solar"]
+margin_left = -104.0
+margin_top = -139.0
+margin_right = 104.0
+margin_bottom = 141.0
+flat = true
+
+[node name="Wind" parent="Container" instance=ExtResource( 1 )]
+position = Vector2( 420, 167 )
+scale = Vector2( 0.9, 0.9 )
+_PlantType = 5
+
+[node name="WindButton" type="Button" parent="Container/Wind"]
+margin_left = -104.0
+margin_top = -139.0
+margin_right = 104.0
+margin_bottom = 141.0
+flat = true
+
+[node name="Tree" parent="Container" instance=ExtResource( 1 )]
+position = Vector2( 1322, 167 )
+scale = Vector2( 0.9, 0.9 )
+_PlantType = 3
+
+[node name="TreeButton" type="Button" parent="Container/Tree"]
+margin_left = -110.0
+margin_top = -143.0
+margin_right = 103.0
+margin_bottom = 141.0
+flat = true
+
+[node name="Hydro" parent="Container" instance=ExtResource( 1 )]
+position = Vector2( 194, 167 )
+scale = Vector2( 0.9, 0.9 )
+_PlantType = 0
+
+[node name="HydroButton" type="Button" parent="Container/Hydro"]
+margin_left = -104.0
+margin_top = -143.0
+margin_right = 100.0
+margin_bottom = 141.0
+flat = true
+
+[node name="Gas" parent="Container" instance=ExtResource( 1 )]
+position = Vector2( 647, 166 )
+scale = Vector2( 0.9, 0.9 )
+
+[node name="GasButton" type="Button" parent="Container/Gas"]
+margin_left = -102.0
+margin_top = -143.0
+margin_right = 102.0
+margin_bottom = 141.0
+flat = true
+
+[node name="Waste" parent="Container" instance=ExtResource( 1 )]
+position = Vector2( 872, 167 )
+scale = Vector2( 0.9, 0.9 )
+_PlantType = 6
+
+[node name="WasteButton" type="Button" parent="Container/Waste"]
+margin_left = -101.0
+margin_top = -144.0
+margin_right = 104.0
+margin_bottom = 143.0
+flat = true
+
+[node name="Biomass" parent="Container" instance=ExtResource( 1 )]
+position = Vector2( 1097, 167 )
+scale = Vector2( 0.9, 0.9 )
+_PlantType = 7
+
+[node name="BiomassButton" type="Button" parent="Container/Biomass"]
+margin_left = -103.0
+margin_top = -148.0
+margin_right = 96.0
+margin_bottom = 141.0
+flat = true
+
+[node name="River" parent="Container" instance=ExtResource( 1 )]
+position = Vector2( 420, 167 )
+scale = Vector2( 0.9, 0.9 )
+_PlantType = 8
+
+[node name="RiverButton" type="Button" parent="Container/River"]
+margin_left = -98.0
+margin_top = -120.0
+margin_right = 108.0
+margin_bottom = 146.0
+flat = true
+
+[node name="Pump" parent="Container" instance=ExtResource( 1 )]
+position = Vector2( 647, 166 )
+scale = Vector2( 0.9, 0.9 )
+_PlantType = 9
+
+[node name="PumpButton" type="Button" parent="Container/Pump"]
+margin_left = -90.0
+margin_top = -120.0
+margin_right = 93.0
+margin_bottom = 144.0
+flat = true
+
+[editable path="Container/Solar"]
+[editable path="Container/Wind"]
+[editable path="Container/Tree"]
+[editable path="Container/Hydro"]
+[editable path="Container/Gas"]
+[editable path="Container/Waste"]
+[editable path="Container/Biomass"]
+[editable path="Container/River"]
+[editable path="Container/Pump"]
