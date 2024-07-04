@@ -49,7 +49,10 @@ public partial class PowerPlant : Node2D {
 	public delegate void ZoomSignalEventHandler(Vector2 PlantPos);
 
 
-	[ExportGroup("Meta Parameters")]
+
+	// !!! Find a way to group properties if possible
+	// !!! [ExportGroup("Meta Parameters")]
+
 	[Export] 
 	// The name of the power plant that will be displayed in the game
 	// This should align with the plant's type
@@ -127,9 +130,9 @@ public partial class PowerPlant : Node2D {
 	private string AnimName;
 
 	// Children Nodes
-	private Sprite2D Sprite;
-	private Sprite2D Sprite2;
-	private Sprite2D Sprite3;
+	private Sprite Sprite;
+	private Sprite Sprite2;
+	private Sprite Sprite3;
 	private ColorRect NameR;
 	private Label NameL;
 	private Label NameBI;
@@ -163,9 +166,9 @@ public partial class PowerPlant : Node2D {
 	private Label MultPrice;
 	private Label MultWinterE;
 	private Label MultSummerE;
-	private Sprite2D NoMoneySprite;
+	private Sprite NoMoneySprite;
 	private Label NoMoney;
-	private Sprite2D LEDOn;
+	private Sprite LEDOn;
 	
 	public AnimationPlayer AP;
 	private Label AnimMoney;
@@ -207,32 +210,31 @@ public partial class PowerPlant : Node2D {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
 		// Fetch all children nodes
-		Sprite 					= GetNode<Sprite2D>("Sprite"); //!!! done
+		Sprite 					= GetNode<Sprite>("Sprite");
 		if(HasMultSprite) {
-			Sprite2 			= GetNode<Sprite2D>("Sprite2");
-			Sprite3 			= GetNode<Sprite2D>("Sprite3");
+			Sprite2 			= GetNode<Sprite>("Sprite2");
+			Sprite3 			= GetNode<Sprite>("Sprite3");
 		}
 		C 							= GetNode<Context>("/root/Context");
 		Delete 					= GetNode<Button>("Delete");
 		InfoButton 			= GetNode<Button>("InfoButton");
-		ResRect 				= GetNode<ColorRect>("ResRect");
 		LifeSpanWarning = GetNode<Label>("LifeSpanWarning");
 		AP 							= GetNode<AnimationPlayer>("AP");
 		AnimMoney 			= GetNode<Label>("Money");
-		NoMoneySprite 	= GetNode<Sprite2D>("NoMoneySprite");
+		NoMoneySprite 	= GetNode<Sprite>("NoMoneySprite");
 	  NoMoney 				= GetNode<Label>("NoMoney");
 		CC 							= GetNode<ConfigController>("ConfigController");
 		HoverArea 			= GetNode<Area2D>("HoverArea");
 		CollShape 			= GetNode<CollisionShape2D>("HoverArea/CollisionShape2D");
 		Info						= GetNode<Control>("BuildInfo");
-		NameBI					= GetNode<Label>("BuildInfo/Name"); //!!! done
+		NameBI					= GetNode<Label>("BuildInfo/Name");
 		PollN 					= GetNode<Label>("BuildInfo/ColorRect/ContainerN/Poll");
-		MoneyL 					= GetNode<Label>("BuildInfo/ColorRect/ContainerN/Prod");
-		LandN 					= GetNode<Label>("BuildInfo/ColorRect/ContainerN/Land");
-		BioN 						= GetNode<Label>("BuildInfo/ColorRect/ContainerN/Bio");
-		MultProd 				= GetNode<Label>("BuildInfo/ColorRect/ContainerN/Prod/MultProd");
 		MultPoll 				= GetNode<Label>("BuildInfo/ColorRect/ContainerN/Poll/MultPoll");
+		MoneyL 					= GetNode<Label>("BuildInfo/ColorRect/ContainerN/Prod");
+		MultProd 				= GetNode<Label>("BuildInfo/ColorRect/ContainerN/Prod/MultProd");
+		LandN 					= GetNode<Label>("BuildInfo/ColorRect/ContainerN/Land");
 		MultLand 				= GetNode<Label>("BuildInfo/ColorRect/ContainerN/Land/MultLand");
+		BioN 						= GetNode<Label>("BuildInfo/ColorRect/ContainerN/Bio");
 		MultBio 				= GetNode<Label>("BuildInfo/ColorRect/ContainerN/Bio/MultBio");
 		PollL 					= GetNode<Label>("BuildInfo/ColorRect/ContainerL/Poll");
 		LandL 					= GetNode<Label>("BuildInfo/ColorRect/ContainerL/Land");
@@ -240,21 +242,22 @@ public partial class PowerPlant : Node2D {
 		LifeSpan 				= GetNode<Label>("BuildInfo/ColorRect/LifeSpan");
 		LifeSpanL 			= GetNode<Label>("BuildInfo/ColorRect/LifeSpan/LifeSpanL");
 		Switch 					= GetNode<CheckButton>("BuildInfo/Switch");
-		LEDOn 					= GetNode<Sprite2D>("BuildInfo/Switch/LEDOn");
+		LEDOn 					= GetNode<Sprite>("BuildInfo/Switch/LEDOn");
 		MultWinterE 		= GetNode<Label>("BuildInfo/MultWinterE");
 		MultSummerE 		= GetNode<Label>("BuildInfo/MultSummerE");
 		Multiplier 			= GetNode<ColorRect>("BuildInfo/EnergyContainer/Multiplier");
 		MultiplierL 		= GetNode<Label>("BuildInfo/EnergyContainer/Multiplier/MultAmount");
-		MultPrice 			= GetNode<Label>("BuildInfo/EnergyContainer/Multiplier/MultPrice");
 		MultInc 				= GetNode<TextureButton>("BuildInfo/EnergyContainer/Multiplier/Inc");
 		MultDec 				= GetNode<TextureButton>("BuildInfo/EnergyContainer/Multiplier/Dec");
+		MultPrice 			= GetNode<Label>("BuildInfo/EnergyContainer/Multiplier/MultPrice");
 		EnergySL 				= GetNode<Label>("BuildInfo/EnergyContainer/Summer/BuildMenuNumHole/SummerE");
 		EnergyWL 				= GetNode<Label>("BuildInfo/EnergyContainer/Winter/BuildMenuNumHole2/WinterE");
-		PreviewInfo 		= GetNode<Control>("PreviewInfo"); //!!! done
-		BTime 					= GetNode<Label>("PreviewInfo/Time"); //!!! done
-		Price 					= GetNode<Label>("PreviewInfo/Price"); //!!! done
-		NameR 					= GetNode<ColorRect>("NameRect"); //!!! done
-		NameL 					= GetNode<Label>("NameRect/Name"); //!!! done
+		PreviewInfo 		= GetNode<Control>("PreviewInfo");
+		BTime 					= GetNode<Label>("PreviewInfo/Time");
+		Price 					= GetNode<Label>("PreviewInfo/Price");
+		NameR 					= GetNode<ColorRect>("NameRect");
+		NameL 					= GetNode<Label>("NameRect/Name");
+		ResRect 				= GetNode<ColorRect>("ResRect");
 		EnergyS 				= GetNode<Label>("ResRect/EnergyS");
 		EnergyW 				= GetNode<Label>("ResRect/EnergyW");
 		
@@ -311,17 +314,18 @@ public partial class PowerPlant : Node2D {
 		NameR.Show();
 
 		// Connect the various signals
-		Switch.Toggled += _OnSwitchToggled;
-		HoverArea.MouseEntered += OnArea2DMouseEntered;
-		HoverArea.MouseExited += OnArea2DMouseExited;
-		InfoButton.Pressed += OnInfoButtonPressed;
-		Delete.Pressed += OnDeletePressed;
-		MultInc.Pressed += OnMultIncPressed;
-		MultDec.Pressed += OnMultDecPressed;
-		MultInc.MouseEntered += OnMultIncMouseEntered;
-		MultInc.MouseExited += OnMultIncMouseExited;
-		MultDec.MouseEntered += OnMultDecMouseEntered;
-		MultDec.MouseExited += OnMultDecMouseExited;
+		//!!! the name of those signals may be written wrongly or not even exist in godot 3, test each of them
+		Switch.Connect("toggled", this, nameof(_OnSwitchToggled)); //!!! To test
+		HoverArea.Connect("mouse_entered", this, nameof(OnArea2DMouseEntered)); //!!! To test
+		HoverArea.Connect("mouse_exited", this, nameof(OnArea2DMouseExited)); //!!! To test
+		InfoButton.Connect("pressed", this, nameof(OnInfoButtonPressed)); //!!! To test
+		Delete.Connect("pressed", this, nameof(OnDeletePressed)); //!!! To test
+		MultInc.Connect("pressed", this, nameof(OnMultIncPressed)); //!!! To test
+		MultInc.Connect("mouse_entered", this, nameof(OnMultIncMouseEntered)); //!!! To test
+		MultInc.Connect("mouse_exited", this, nameof(OnMultIncMouseExited)); //!!! To test
+		MultDec.Connect("pressed", this, nameof(OnMultDecPressed)); //!!! To test
+		MultDec.Connect("mouse_entered", this, nameof(OnMultDecMouseEntered)); //!!! To test
+		MultDec.Connect("mouse_exited", this, nameof(OnMultDecMouseExited)); //!!! To test
 
 		// Reset multiplier
 		MultiplierValue = 1;
@@ -340,7 +344,7 @@ public partial class PowerPlant : Node2D {
 	// Hides the powerplant info if the player clicks somewhere else on the map
 	public override void _UnhandledInput(InputEvent E) {
 		if(E is InputEventMouseButton MouseButton) {
-			if(MouseButton.ButtonMask == MouseButtonMask.Left) {
+			if(MouseButton.ButtonMask == (int) ButtonList.Left) {
 				Info.Hide();
 				ResRect.Hide();
 			}
@@ -514,7 +518,7 @@ public partial class PowerPlant : Node2D {
 	// Resets the plant
 	public void _Reset() {
 		// Disable the switch
-		Switch.ButtonPressed = true;
+		Switch.Pressed = true; //!!! To test
 		Switch.Disabled = false;
 		Switch.Show();
 		MultInc.Disabled = false;
@@ -642,7 +646,7 @@ public partial class PowerPlant : Node2D {
 			KillPowerPlant();
 
 			// Disable the switch
-			Switch.ButtonPressed = false;
+			Switch.Pressed = false; //!!! To test
 			Switch.Disabled = true;
 			
 			// Workaround to allow for an immediate update
@@ -930,7 +934,7 @@ public partial class PowerPlant : Node2D {
 		_UpdatePlantData();
 
 		// Singal that the plant was updated
-		EmitSignal(SignalName.UpdatePlant);
+		EmitSignal(nameof(UpdatePlantEventHandler));
 	}
 	
 	// Hide the plant information when the mouse no longer hovers over the plant
@@ -978,7 +982,7 @@ public partial class PowerPlant : Node2D {
 			}
 		}
 		
-		EmitSignal(SignalName.ZoomSignal, Position);
+		EmitSignal(nameof(ZoomSignalEventHandler), Position); //!!! To test
 	}
 
 	// Requests a deletion of the powerplant
@@ -1010,7 +1014,6 @@ public partial class PowerPlant : Node2D {
 			BB.AP.Play("Money+");
 		}
 		
-
 		// Kill the deleted power plant
 		KillPowerPlant();
 
@@ -1018,10 +1021,10 @@ public partial class PowerPlant : Node2D {
 		_UpdatePlantData();
 
 		// Singal that the plant was updated
-		EmitSignal(SignalName.UpdatePlant);
+		EmitSignal(nameof(UpdatePlantEventHandler));
 
 		// Signal that the plant was deleted
-		EmitSignal(SignalName.DeletePlant, BB, this, true);
+		EmitSignal(nameof(DeletePlantEventHandler), BB, this, true); //!!! To test
 
 		// Reactivate the plant for future construction
 		ActivatePowerPlant();
@@ -1047,7 +1050,7 @@ public partial class PowerPlant : Node2D {
 			}
 			
 			// Signal the request to the game loop
-			EmitSignal(SignalName.UpgradePlant, true, mult.Cost, this);
+			EmitSignal(nameof(UpgradePlantEventHandler), true, mult.Cost, this); //!!! To test
 		}
 		// Recalculate multiplier info numbers
 		GetMultIncInfo();
@@ -1069,7 +1072,7 @@ public partial class PowerPlant : Node2D {
 				AP.Play("Money+");
 			}
 			// Signal the request to the game loop
-			EmitSignal(SignalName.UpgradePlant, false, -mult.Cost, this);
+			EmitSignal(nameof(UpgradePlantEventHandler), false, -mult.Cost, this);
 		}
 		
 		// Recalculate multiplier info numbers
@@ -1139,7 +1142,7 @@ public partial class PowerPlant : Node2D {
 			ActivatePowerPlant();
 
 			// Disable the switch
-			Switch.ButtonPressed = true;
+			Switch.Pressed = true;
 			Switch.Disabled = false;
 			
 			// Workaround to allow for an immediate update

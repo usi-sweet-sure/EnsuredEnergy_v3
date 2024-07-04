@@ -36,6 +36,9 @@ public partial class GameLoop : Node2D {
 
 	// Returns the resource manager itself
 	public ResourceManager _GetRM() => RM;
+	public MoneyData Money; // The current money the player has
+	public bool _CheckBuildReq(int cost) => Money.Money >= cost || cost == 0;
+
 
 	// Retrieves the current resource estimates from the resource manager
 	public (Energy, Environment, Support) _GetResources() => RM._GetResources();
@@ -43,4 +46,8 @@ public partial class GameLoop : Node2D {
 	public void _OnPlayPressed() {}
 
 	public void _ApplyEffect(Effect e) {}
+
+	public void _ApplyOverloads() {
+
+	}
 }

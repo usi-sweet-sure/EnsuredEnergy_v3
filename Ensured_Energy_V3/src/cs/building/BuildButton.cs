@@ -28,8 +28,13 @@ public partial class BuildButton : TextureButton {
 	 * Lines are just readded progressively as needed in other files.
 	 */
 	public delegate void BuildDoneEventHandler();
-
+	public Label AnimMoney;
+	public AnimationPlayer AP;
 	public void _NextTurn() {
 
-	}	
+	}
+
+	public void _Reset() {
+	}
+
 }

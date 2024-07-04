@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/UI Elements/Plant_Menu-Metal.png" type="Texture" id=1]
 [ext_resource path="res://assets/UI Elements/Build_Menu_0002_Numbers-counter-1.png" type="Texture" id=2]
@@ -7,6 +7,20 @@
 [ext_resource path="res://assets/UI Elements/Build_Menu_0004_Build-Menu-Screen.png" type="Texture" id=5]
 [ext_resource path="res://assets/UI Elements/Icon-Solar.png" type="Texture" id=6]
 [ext_resource path="res://assets/UI Elements/Icon-Wind.png" type="Texture" id=7]
+[ext_resource path="res://assets/no-money.png" type="Texture" id=8]
+[ext_resource path="res://src/cs/utils/xml/ConfigController.cs" type="Script" id=9]
+[ext_resource path="res://assets/UI Elements/LED-On.png" type="Texture" id=10]
+[ext_resource path="res://assets/UI Elements/LED-Off.png" type="Texture" id=11]
+[ext_resource path="res://assets/UI Elements/Post-it-yellow.png" type="Texture" id=12]
+[ext_resource path="res://assets/UI Elements/Build_Menu_counter_yellow-1.png" type="Texture" id=13]
+[ext_resource path="res://assets/UI Elements/Button-small-normal.png" type="Texture" id=14]
+[ext_resource path="res://assets/UI Elements/Button-small-Hole.png" type="Texture" id=15]
+[ext_resource path="res://assets/UI Elements/Button-small-press.png" type="Texture" id=16]
+[ext_resource path="res://assets/UI Elements/Button-small-hover.png" type="Texture" id=17]
+[ext_resource path="res://assets/UI Elements/Post-it-red.png" type="Texture" id=18]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 86, 122.5 )
 
 [node name="PowerPlant" type="Node2D"]
 
@@ -31,7 +45,15 @@ margin_right = 90.0
 margin_bottom = -213.0
 text = "1000"
 
+[node name="Time3" type="Label" parent="PreviewInfo"]
+margin_left = 152.0
+margin_top = -249.0
+margin_right = 213.0
+margin_bottom = -194.0
+text = "⌛hourglass"
+
 [node name="BuildMenuBG" type="Sprite" parent="PreviewInfo"]
+show_behind_parent = true
 position = Vector2( 96, -128 )
 texture = ExtResource( 4 )
 
@@ -75,6 +97,7 @@ texture = ExtResource( 7 )
 position = Vector2( -1, 44 )
 
 [node name="BuildInfo" type="Control" parent="."]
+visible = false
 margin_left = -86.0
 margin_top = -475.0
 margin_right = -46.0
@@ -92,6 +115,346 @@ margin_right = 310.0
 margin_bottom = 97.0
 color = Color( 0.596078, 0.596078, 0.596078, 0 )
 
+[node name="LifeSpan" type="Label" parent="BuildInfo/ColorRect"]
+visible = false
+margin_left = 21.0
+margin_top = 371.0
+margin_right = 348.0
+margin_bottom = 419.0
+text = "333"
+
+[node name="LifeSpanL" type="Label" parent="BuildInfo/ColorRect/LifeSpan"]
+margin_left = 53.0
+margin_right = 362.0
+margin_bottom = 49.0
+text = "⚠️ Shutting down in"
+
+[node name="ContainerL" type="VBoxContainer" parent="BuildInfo/ColorRect"]
+margin_left = -70.0
+margin_top = -42.0
+margin_right = 190.0
+margin_bottom = 208.0
+
+[node name="Poll" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
+margin_right = 260.0
+margin_bottom = 14.0
+text = "CO2 Emissions"
+
+[node name="Land" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
+margin_top = 18.0
+margin_right = 260.0
+margin_bottom = 32.0
+text = "Land use"
+
+[node name="Bio" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
+margin_top = 36.0
+margin_right = 260.0
+margin_bottom = 50.0
+text = "Biodiversity"
+
+[node name="ContainerN" type="VBoxContainer" parent="BuildInfo/ColorRect"]
+margin_left = 15.0
+margin_top = -39.0
+margin_right = 457.0
+margin_bottom = 211.0
+
+[node name="Prod" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
+margin_right = 442.0
+margin_bottom = 14.0
+text = "100"
+align = 2
+
+[node name="MultProd" type="Label" parent="BuildInfo/ColorRect/ContainerN/Prod"]
+margin_left = 193.0
+margin_right = 293.0
+margin_bottom = 53.0
+text = "10"
+align = 2
+
+[node name="arrow" type="Label" parent="BuildInfo/ColorRect/ContainerN/Prod/MultProd"]
+margin_left = -142.0
+margin_top = -12.5
+margin_right = 170.0
+margin_bottom = 57.5
+text = "→rArrow"
+align = 2
+
+[node name="Poll" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
+margin_top = 18.0
+margin_right = 442.0
+margin_bottom = 32.0
+text = "10"
+align = 2
+
+[node name="MultPoll" type="Label" parent="BuildInfo/ColorRect/ContainerN/Poll"]
+margin_left = 193.0
+margin_right = 293.0
+margin_bottom = 53.0
+text = "10"
+align = 2
+
+[node name="arrow" type="Label" parent="BuildInfo/ColorRect/ContainerN/Poll/MultPoll"]
+margin_left = -142.0
+margin_top = -11.5
+margin_right = 170.0
+margin_bottom = 58.5
+text = "→ rArrow"
+align = 2
+
+[node name="Land" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
+margin_top = 36.0
+margin_right = 442.0
+margin_bottom = 50.0
+text = "3"
+align = 2
+
+[node name="MultLand" type="Label" parent="BuildInfo/ColorRect/ContainerN/Land"]
+margin_left = 193.0
+margin_right = 293.0
+margin_bottom = 53.0
+text = "3"
+align = 2
+
+[node name="arrow" type="Label" parent="BuildInfo/ColorRect/ContainerN/Land/MultLand"]
+margin_left = -142.0
+margin_top = -12.5
+margin_right = 170.0
+margin_bottom = 57.5
+text = "→rArrow"
+align = 2
+
+[node name="Bio" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
+margin_top = 54.0
+margin_right = 442.0
+margin_bottom = 68.0
+text = "3"
+align = 2
+
+[node name="MultBio" type="Label" parent="BuildInfo/ColorRect/ContainerN/Bio"]
+margin_left = 193.0
+margin_right = 293.0
+margin_bottom = 53.0
+text = "3"
+align = 2
+
+[node name="arrow" type="Label" parent="BuildInfo/ColorRect/ContainerN/Bio/MultBio"]
+margin_left = -142.0
+margin_top = -12.5
+margin_right = 170.0
+margin_bottom = 57.5
+text = "→rArrow"
+align = 2
+
+[node name="MultWinterE" type="Label" parent="BuildInfo"]
+visible = false
+margin_left = -58.0
+margin_top = 244.0
+margin_right = -18.0
+margin_bottom = 279.0
+text = "+ 2"
+align = 1
+
+[node name="PostitE" type="Sprite" parent="BuildInfo/MultWinterE"]
+show_behind_parent = true
+position = Vector2( 21, 13 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 12 )
+
+[node name="MultSummerE" type="Label" parent="BuildInfo"]
+visible = false
+margin_left = 172.0
+margin_top = 233.0
+margin_right = 215.0
+margin_bottom = 268.0
+text = "+ 2"
+align = 1
+
+[node name="PostiteE2" type="Sprite" parent="BuildInfo/MultSummerE"]
+show_behind_parent = true
+position = Vector2( 18, 13 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 12 )
+
+[node name="Name" type="Label" parent="BuildInfo"]
+margin_left = -218.0
+margin_top = -273.0
+margin_right = 382.0
+margin_bottom = -209.0
+text = "1234"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Switch" type="CheckButton" parent="BuildInfo"]
+margin_left = -299.0
+margin_top = 79.0
+margin_right = -219.0
+margin_bottom = 155.0
+flat = true
+
+[node name="LEDOff" type="Sprite" parent="BuildInfo/Switch"]
+position = Vector2( 24.5, 74 )
+texture = ExtResource( 11 )
+
+[node name="LEDOn" type="Sprite" parent="BuildInfo/Switch"]
+position = Vector2( 24.5, 74 )
+texture = ExtResource( 10 )
+
+[node name="EnergyContainer" type="HBoxContainer" parent="BuildInfo"]
+margin_left = -258.0
+margin_top = 64.0
+margin_right = 270.0
+margin_bottom = 256.0
+
+[node name="Winter" type="Control" parent="BuildInfo/EnergyContainer"]
+margin_bottom = 192.0
+
+[node name="BuildMenuNumeHole2" type="Sprite" parent="BuildInfo/EnergyContainer/Winter"]
+position = Vector2( 112, 89 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+[node name="BuildMenuNumCounter" type="Sprite" parent="BuildInfo/EnergyContainer/Winter/BuildMenuNumeHole2"]
+position = Vector2( 9, 0 )
+texture = ExtResource( 2 )
+
+[node name="BuildMenuNumCounter2" type="Sprite" parent="BuildInfo/EnergyContainer/Winter/BuildMenuNumeHole2"]
+position = Vector2( 29, 0 )
+texture = ExtResource( 2 )
+
+[node name="WinterE" type="Label" parent="BuildInfo/EnergyContainer/Winter/BuildMenuNumeHole2"]
+margin_left = -3.25
+margin_top = -17.25
+margin_right = 36.75
+margin_bottom = 16.75
+text = "10"
+align = 2
+valign = 1
+
+[node name="Icon-wind" type="Sprite" parent="BuildInfo/EnergyContainer/Winter/BuildMenuNumeHole2"]
+position = Vector2( -28, 0 )
+texture = ExtResource( 7 )
+
+[node name="Summer" type="Control" parent="BuildInfo/EnergyContainer"]
+margin_left = 4.0
+margin_right = 4.0
+margin_bottom = 192.0
+
+[node name="BuildMenuNumHole" type="Sprite" parent="BuildInfo/EnergyContainer/Summer"]
+position = Vector2( 112, 89 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+[node name="BuildMenuNumCounter" type="Sprite" parent="BuildInfo/EnergyContainer/Summer/BuildMenuNumHole"]
+position = Vector2( 9, 0 )
+texture = ExtResource( 2 )
+
+[node name="BuildMenuNumCounter2" type="Sprite" parent="BuildInfo/EnergyContainer/Summer/BuildMenuNumHole"]
+position = Vector2( 29, 0 )
+texture = ExtResource( 2 )
+
+[node name="SummerE" type="Label" parent="BuildInfo/EnergyContainer/Summer/BuildMenuNumHole"]
+margin_left = -3.0
+margin_top = -16.5
+margin_right = 37.0
+margin_bottom = 17.5
+text = "10"
+align = 2
+valign = 1
+
+[node name="Icon-solar" type="Sprite" parent="BuildInfo/EnergyContainer/Summer/BuildMenuNumHole"]
+position = Vector2( -28, 0 )
+texture = ExtResource( 6 )
+
+[node name="Multiplier" type="ColorRect" parent="BuildInfo/EnergyContainer"]
+margin_left = 8.0
+margin_right = 8.0
+margin_bottom = 192.0
+color = Color( 0.596078, 0.596078, 0.596078, 0 )
+
+[node name="MultAmount" type="Label" parent="BuildInfo/EnergyContainer/Multiplier"]
+margin_left = 51.0
+margin_top = 57.0
+margin_right = 85.0
+margin_bottom = 121.0
+text = "1"
+align = 1
+valign = 1
+
+[node name="Sprite" type="Sprite" parent="BuildInfo/EnergyContainer/Multiplier/MultAmount"]
+show_behind_parent = true
+position = Vector2( 16.167, 31.667 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 13 )
+
+[node name="Sprite2" type="Sprite" parent="BuildInfo/EnergyContainer/Multiplier/MultAmount/Sprite"]
+show_behind_parent = true
+position = Vector2( -9, 1.25 )
+scale = Vector2( 0.487, 1 )
+texture = ExtResource( 3 )
+
+[node name="Inc" type="TextureButton" parent="BuildInfo/EnergyContainer/Multiplier"]
+visible = false
+margin_left = 106.333
+margin_top = 33.0
+margin_right = 138.333
+margin_bottom = 66.0
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 17 )
+
+[node name="Label" type="Label" parent="BuildInfo/EnergyContainer/Multiplier/Inc"]
+margin_left = 8.333
+margin_top = -7.167
+margin_right = 26.333
+margin_bottom = 39.833
+text = "+"
+align = 1
+valign = 1
+
+[node name="Sprite" type="Sprite" parent="BuildInfo/EnergyContainer/Multiplier/Inc"]
+show_behind_parent = true
+position = Vector2( 29.667, 34 )
+texture = ExtResource( 15 )
+
+[node name="Dec" type="TextureButton" parent="BuildInfo/EnergyContainer/Multiplier"]
+visible = false
+margin_left = 104.5
+margin_top = 99.333
+margin_right = 136.5
+margin_bottom = 132.333
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 17 )
+
+[node name="Label2" type="Label" parent="BuildInfo/EnergyContainer/Multiplier/Dec"]
+margin_left = 7.167
+margin_top = -11.0
+margin_right = 25.167
+margin_bottom = 36.0
+text = "-"
+align = 1
+valign = 1
+
+[node name="Sprite2" type="Sprite" parent="BuildInfo/EnergyContainer/Multiplier/Dec"]
+show_behind_parent = true
+position = Vector2( 29.5, 34.667 )
+texture = ExtResource( 15 )
+
+[node name="MultPrice" type="Label" parent="BuildInfo/EnergyContainer/Multiplier"]
+visible = false
+margin_left = 201.0
+margin_top = 90.0
+margin_right = 246.0
+margin_bottom = 125.0
+text = "$$$"
+
+[node name="Postit" type="Sprite" parent="BuildInfo/EnergyContainer/Multiplier/MultPrice"]
+show_behind_parent = true
+position = Vector2( 21.819, 15.164 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 18 )
+
 [node name="NameRect" type="ColorRect" parent="."]
 margin_left = -56.0
 margin_top = -144.0
@@ -105,3 +468,83 @@ margin_top = 7.0
 margin_right = 137.0
 margin_bottom = 43.0
 text = "Name"
+align = 1
+valign = 1
+
+[node name="ResRect" type="ColorRect" parent="."]
+margin_left = -35.0
+margin_top = 157.0
+margin_right = -3.0
+margin_bottom = 186.0
+color = Color( 0.596078, 0.596078, 0.596078, 0 )
+
+[node name="EnergyS" type="Label" parent="ResRect"]
+margin_left = 89.0
+margin_top = -21.0
+margin_right = 128.0
+margin_bottom = 17.0
+text = "10"
+align = 2
+
+[node name="EnergyW" type="Label" parent="ResRect"]
+margin_left = -11.0
+margin_top = -21.0
+margin_right = 28.0
+margin_bottom = 17.0
+text = "10"
+align = 2
+
+[node name="ConfigController" type="Node" parent="."]
+script = ExtResource( 9 )
+
+[node name="Delete" type="Button" parent="."]
+margin_left = 143.0
+margin_top = -200.0
+margin_right = 200.0
+margin_bottom = -144.0
+text = "X"
+
+[node name="InfoButton" type="Button" parent="."]
+margin_left = -88.0
+margin_top = -144.0
+margin_right = 88.0
+margin_bottom = 96.0
+flat = true
+
+[node name="HoverArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
+position = Vector2( 0, 4 )
+shape = SubResource( 1 )
+
+[node name="LifeSpanWarning" type="Label" parent="."]
+visible = false
+margin_left = 128.0
+margin_top = 128.0
+margin_right = 205.0
+margin_bottom = 205.0
+text = "⚠️ *Warning*"
+
+[node name="NoMoney" type="Label" parent="."]
+visible = false
+margin_left = 3.0
+margin_top = 221.0
+margin_right = 307.0
+margin_bottom = 337.0
+text = "Not enough Money !"
+
+[node name="Money" type="Label" parent="."]
+visible = false
+margin_left = -25.0
+margin_top = 25.0
+margin_right = 45.0
+margin_bottom = 114.0
+text = "$$"
+
+[node name="AP" type="AnimationPlayer" parent="."]
+
+[node name="NoMoneySprite" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 8 )
