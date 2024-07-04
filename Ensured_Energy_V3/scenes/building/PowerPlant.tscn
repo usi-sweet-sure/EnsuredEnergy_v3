@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/UI Elements/Plant_Menu-Metal.png" type="Texture" id=1]
 [ext_resource path="res://assets/UI Elements/Build_Menu_0002_Numbers-counter-1.png" type="Texture" id=2]
@@ -18,11 +18,13 @@
 [ext_resource path="res://assets/UI Elements/Button-small-press.png" type="Texture" id=16]
 [ext_resource path="res://assets/UI Elements/Button-small-hover.png" type="Texture" id=17]
 [ext_resource path="res://assets/UI Elements/Post-it-red.png" type="Texture" id=18]
+[ext_resource path="res://src/cs/building/PowerPlant.cs" type="Script" id=19]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 86, 122.5 )
 
 [node name="PowerPlant" type="Node2D"]
+script = ExtResource( 19 )
 
 [node name="PreviewInfo" type="Control" parent="."]
 margin_left = -80.0
@@ -309,20 +311,20 @@ margin_bottom = 256.0
 [node name="Winter" type="Control" parent="BuildInfo/EnergyContainer"]
 margin_bottom = 192.0
 
-[node name="BuildMenuNumeHole2" type="Sprite" parent="BuildInfo/EnergyContainer/Winter"]
+[node name="BuildMenuNumHole2" type="Sprite" parent="BuildInfo/EnergyContainer/Winter"]
 position = Vector2( 112, 89 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 
-[node name="BuildMenuNumCounter" type="Sprite" parent="BuildInfo/EnergyContainer/Winter/BuildMenuNumeHole2"]
+[node name="BuildMenuNumCounter" type="Sprite" parent="BuildInfo/EnergyContainer/Winter/BuildMenuNumHole2"]
 position = Vector2( 9, 0 )
 texture = ExtResource( 2 )
 
-[node name="BuildMenuNumCounter2" type="Sprite" parent="BuildInfo/EnergyContainer/Winter/BuildMenuNumeHole2"]
+[node name="BuildMenuNumCounter2" type="Sprite" parent="BuildInfo/EnergyContainer/Winter/BuildMenuNumHole2"]
 position = Vector2( 29, 0 )
 texture = ExtResource( 2 )
 
-[node name="WinterE" type="Label" parent="BuildInfo/EnergyContainer/Winter/BuildMenuNumeHole2"]
+[node name="WinterE" type="Label" parent="BuildInfo/EnergyContainer/Winter/BuildMenuNumHole2"]
 margin_left = -3.25
 margin_top = -17.25
 margin_right = 36.75
@@ -331,7 +333,7 @@ text = "10"
 align = 2
 valign = 1
 
-[node name="Icon-wind" type="Sprite" parent="BuildInfo/EnergyContainer/Winter/BuildMenuNumeHole2"]
+[node name="Icon-wind" type="Sprite" parent="BuildInfo/EnergyContainer/Winter/BuildMenuNumHole2"]
 position = Vector2( -28, 0 )
 texture = ExtResource( 7 )
 
