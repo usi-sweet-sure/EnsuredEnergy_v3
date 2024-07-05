@@ -39,12 +39,12 @@ public partial class SupportManager : Node {
 
 	// Increases the value of the support by the given diff amount (can be negative) 
 	public void _UpdateSupport(int diff) {
-		S.Value = Math.Max(S.Value + diff, 0);
+		S.Value = Mathf.Max(S.Value + diff, 0);
 	}
 
 	// Setter for the support
 	public void _SetSupport(int newval) {
-		S.Value = Math.Max(newval, 0);
+		S.Value = Mathf.Max(newval, 0);
 	}
 
 	// Resets the support manager back to its default values

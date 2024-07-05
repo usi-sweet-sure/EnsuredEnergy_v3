@@ -92,8 +92,8 @@ public partial class PolicyManager : Node {
 	// (baseProbability + bonus) - ((baseProbability + bonus) * (requirement - support))
 	public float _GetRealProb(string policyId) {
 		// Compute the augmented base probability (clamped to [0, 1])
-		float baseWBonus = Math.Max(0.0f, 
-			Math.Min(
+		float baseWBonus = Mathf.Max(0.0f, 
+			Mathf.Min(
 				PC._GetPolicyProba(policyId) + Bonuses[PC._GetPolicyTag(policyId)],
 				1.0f
 			));
@@ -106,7 +106,7 @@ public partial class PolicyManager : Node {
 		float support = C._GetResources().Item3.Value;
 
 		// return the final result
-		return  Math.Max(0.0f, Math.Min(
+		return  Mathf.Max(0.0f, Mathf.Min(
 			baseWBonus - (0.01f * baseWBonus * (req - support)),
 		1.0f));
 	}

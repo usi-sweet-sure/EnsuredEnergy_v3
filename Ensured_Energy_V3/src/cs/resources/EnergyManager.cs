@@ -140,8 +140,8 @@ public partial class EnergyManager : Node {
 
 		// Clamp the demands to fit int the bar
 		(float demandw, float demands) =  (
-			Math.Max(0.0f, Math.Min(Ds.Item1, MAX_ENERGY_BAR_VAL)),
-			Math.Max(0.0f, Math.Min(Ds.Item2, MAX_ENERGY_BAR_VAL))
+			Mathf.Max(0.0f, Mathf.Min(Ds.Item1, MAX_ENERGY_BAR_VAL)),
+			Mathf.Max(0.0f, Mathf.Min(Ds.Item2, MAX_ENERGY_BAR_VAL))
 		);
 
 		// Compute the imported supply
@@ -159,8 +159,8 @@ public partial class EnergyManager : Node {
 		float excess_s = supply_s - MAX_ENERGY_BAR_VAL;
 		
 		// Normalize the supply
-		supply_w = Math.Max(0, Math.Min(supply_w, MAX_ENERGY_BAR_VAL));
-		supply_s = Math.Max(0, Math.Min(supply_s, MAX_ENERGY_BAR_VAL));
+		supply_w = Mathf.Max(0, Mathf.Min(supply_w, MAX_ENERGY_BAR_VAL));
+		supply_s = Mathf.Max(0, Mathf.Min(supply_s, MAX_ENERGY_BAR_VAL));
 
 		return new Energy(supply_s, supply_w, demands, demandw, excess_s, excess_w);
 	}
@@ -179,8 +179,8 @@ public partial class EnergyManager : Node {
 		float excess_s = supply_s - MAX_ENERGY_BAR_VAL;
 		
 		// Normalize the supply
-		supply_w = Math.Max(0, Math.Min(supply_w, MAX_ENERGY_BAR_VAL));
-		supply_s = Math.Max(0, Math.Min(supply_s, MAX_ENERGY_BAR_VAL));
+		supply_w = Mathf.Max(0, Mathf.Min(supply_w, MAX_ENERGY_BAR_VAL));
+		supply_s = Mathf.Max(0, Mathf.Min(supply_s, MAX_ENERGY_BAR_VAL));
 
 		// Extract the demand from the model
 		float demand_w = MW._Demand.Base;

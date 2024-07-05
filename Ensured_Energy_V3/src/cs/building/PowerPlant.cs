@@ -19,6 +19,7 @@ using Godot;
 using System;
 using System.Diagnostics;
 
+
 // Represents a Power Plant object in the game
 public partial class PowerPlant : Node2D {
 
@@ -462,9 +463,9 @@ public partial class PowerPlant : Node2D {
 
 			// Apply the multiplier
 			Pollution /= mult.Pollution;
-			LandUse /= Math.Max(1.0f, mult.LandUse);
-			BiodiversityImpact /= Math.Max(1.0f, mult.Biodiversity);
-			ProductionCost = (int)(ProductionCost / Math.Max(1.0f, mult.ProductionCost));
+			LandUse /= Mathf.Max(1.0f, mult.LandUse);
+			BiodiversityImpact /= Mathf.Max(1.0f, mult.Biodiversity);
+			ProductionCost = (int)(ProductionCost / Mathf.Max(1.0f, mult.ProductionCost));
 			EnergyCapacity -= mult.Capacity;
 
 			// Propagate update to the ui

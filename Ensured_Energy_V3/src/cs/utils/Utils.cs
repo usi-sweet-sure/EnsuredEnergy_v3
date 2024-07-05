@@ -73,6 +73,7 @@ public struct Environment {
 	// Computes the value used to update the environment bar
 	public double EnvBarValue() {
 		// Use a basic signmoid to compute the mixture
+		//!!! This may cause an error, find a MAthf equivalent or rewrite
 		double x = Math.Exp(6.0 * (Biodiversity - 1.1 * LandUse)) - Shock;
 		return x / (x + 1.0);
 	}
@@ -85,8 +86,8 @@ public struct Environment {
 		ImportedPollution = ip;
 
 		// Make sure that the following two metrics are percentages
-		LandUse = Math.Max(0.0f, Math.Min(lu, 1.0f)); 
-		Biodiversity = Math.Max(0.0f, Math.Min(bd, 1.0f));
+		LandUse = Mathf.Max(0.0f, Mathf.Min(lu, 1.0f)); 
+		Biodiversity = Mathf.Max(0.0f, Mathf.Min(bd, 1.0f));
 		
 		Shock = s;
 	}
@@ -526,8 +527,8 @@ public readonly struct PowerPlantConfigData : ConfigData {
 		EndTurn = lc;
 		ProductionCost = pc;
 		Capacity = cap;
-		Availability_W = Math.Max(0.0f, Math.Min(avw, 1.0f));
-		Availability_S = Math.Max(0.0f, Math.Min(avs, 1.0f));
+		Availability_W = Mathf.Max(0.0f, Mathf.Min(avw, 1.0f));
+		Availability_S = Mathf.Max(0.0f, Mathf.Min(avs, 1.0f));
 		Pollution = pol;
 		LandUse = lu;
 		Biodiversity = bd;
@@ -640,7 +641,7 @@ public struct Reward {
 	// Converts an effect into a list of requirements
 	public List<Requirement> ToRequirements() => 
 		// Only negative effects have requirements, all others are clamped to 0
-		Effects.Select(se => new Requirement(se.RT, Math.Abs(Math.Min(se.Value, 0)))).ToList();
+		Effects.Select(se => new Requirement(se.RT, Mathf.Abs(Mathf.Min(se.Value, 0)))).ToList();
 	
 }
 

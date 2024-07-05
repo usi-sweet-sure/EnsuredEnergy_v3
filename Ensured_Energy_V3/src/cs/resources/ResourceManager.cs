@@ -327,13 +327,13 @@ public partial class ResourceManager : Node {
 		// Update the UI
 		_UI._UpdateData(
 			UI.InfoType.W_ENGERGY,
-			(int)Math.Floor(E.DemandWinter), 
-			(int)Math.Floor(E.SupplyWinter)
+			(int)Mathf.Floor(E.DemandWinter), 
+			(int)Mathf.Floor(E.SupplyWinter)
 		);
 		_UI._UpdateData(
 			UI.InfoType.S_ENGERGY, 
-			(int)Math.Floor(E.DemandSummer), 
-			(int)Math.Floor(E.SupplySummer)
+			(int)Mathf.Floor(E.DemandSummer), 
+			(int)Mathf.Floor(E.SupplySummer)
 		);
 	}
 

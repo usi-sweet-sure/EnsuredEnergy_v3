@@ -20,7 +20,7 @@ using System;
 
 // UI Script for the import controlling slider
 public partial class ImportSlider : VSlider {
-    public int _GetImportValue() => (int)Math.Max(0.0f, Math.Min(ImportAmount, MAX_ENERGY_IMPORT));
+    public int _GetImportValue() => (int)Mathf.Max(0.0f, Mathf.Min(ImportAmount, MAX_ENERGY_IMPORT));
     /*
 	 * !!! This code is not being reworked yet. 
 	 * Lines are just readded progressively as needed in other files.

@@ -94,6 +94,7 @@ public partial class EnvironmentManager : Node {
 	// and include it in our pollution bar
 	public void _UpdateImportPollution(int import_amount, float pol_per_kwh) {
 		// Compute the total imported pollution
+		//!!! This may cause an error, find a MAthf equivalent or rewrite
 		int pol = (int)Math.Ceiling(import_amount * pol_per_kwh);
 
 		// Update the internally stored value
@@ -111,14 +112,14 @@ public partial class EnvironmentManager : Node {
 	// ==================== Helper Methods ====================  
 
 	// Aggregate the biodiverstiy contributions
-	private float AggregateBiodiversity() => Math.Max(0.0f, Math.Min(
+	private float AggregateBiodiversity() => Mathf.Max(0.0f, Mathf.Min(
 		PowerPlants.Where(pp => pp._GetLiveness()).Select(pp => pp.BiodiversityImpact)
 			.Aggregate(1.0f, (acc, bd) => acc - bd),
 		1.0f)
 	);
 
 	// Aggregate the land use contributions
-	private float AggregateLandUse() => Math.Max(0.0f, Math.Min(
+	private float AggregateLandUse() => Mathf.Max(0.0f, Mathf.Min(
 		PowerPlants.Where(pp => pp._GetLiveness()).Select(pp => pp.LandUse).Sum(),
 		1.0f)
 	);
