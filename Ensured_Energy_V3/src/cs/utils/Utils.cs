@@ -311,7 +311,15 @@ public readonly struct Building {
 	}
 
 	// Override of the get hashcode method (needed to overload == and !=)
-	public override int GetHashCode() => HashCode.Combine(type);
+	public override int GetHashCode(){
+    unchecked
+    {
+        int hash = 17;
+        hash = hash * 31 + type.GetHashCode();
+
+        return hash;
+    }
+	}
 }
 
 // Models a Build Slot
@@ -387,7 +395,15 @@ public readonly struct Config {
 	}
 
 	// Override of the get hashcode method (needed to overload == and !=)
-	public override int GetHashCode() => HashCode.Combine(type);
+	public override int GetHashCode() {
+    unchecked
+    {
+        int hash = 17;
+        hash = hash * 31 + type.GetHashCode();
+
+        return hash;
+    }
+	}
 }
 
 // Represents the multiplier config of a powerplant
@@ -481,7 +497,15 @@ public readonly struct Language {
 	}
 
 	// Override of the get hashcode method (needed to overload == and !=)
-	public override int GetHashCode() => HashCode.Combine(lang);
+	public override int GetHashCode(){
+    unchecked
+    {
+        int hash = 17;
+        hash = hash * 31 + lang.GetHashCode();
+
+        return hash;
+    }
+	}
 }
 
 // ==========================================================

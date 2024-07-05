@@ -121,7 +121,15 @@ public readonly struct ModelCol {
 	}
 
 	// Override of the get hashcode method (needed to overload == and !=)
-	public override int GetHashCode() => HashCode.Combine(type);
+	public override int GetHashCode() {
+        unchecked
+        {
+            int hash = 17;
+            hash = hash * 31 + type.GetHashCode();
+
+            return hash;
+        }
+	}
 }
 
 // Internal datastructure containing the fields that are obtained through Toby's Model
